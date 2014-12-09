@@ -7,7 +7,8 @@ angular.module('waffle', [
   'waffle.nav',
   'ui.router',
   'yaru22.md',
-  'ngSanitize'
+  'ngSanitize',
+  'PhotoController'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
