@@ -1,5 +1,8 @@
 angular.module('waffle.services', [])
 
+// .factory('Temp', function($http, $location, $window, $rootScope) {
+//   var 
+// })
 
 .factory('Edit', function ($http, $location, $window, $rootScope) {
   //getPost() if post exists, else if new post, don't
