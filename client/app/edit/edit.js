@@ -88,3 +88,9 @@ angular.module('waffle.edit', [])
 
 
 }])
+
+
+//when finishing the upload, send back the url to the image
+//make the onFileSelect function wait for a response from the server
+//when it gets a response, have it set the imageUrl to the response
+//put the imageUrl into the post submission so each post has a url to the image that was saved with it
