@@ -1,4 +1,4 @@
-angular.module('waffle.dashboard', ['masonry'])
+angular.module('waffle.dashboard', ['masonry','ui.directives'])
 
 .controller('DashboardController', function($scope, $rootScope, Dashboard, $timeout, $location, Auth, $stateParams) {
   $scope.posts = [];
@@ -11,6 +11,11 @@ angular.module('waffle.dashboard', ['masonry'])
     arr = ['col-md-2','col-md-4'];
     var pos = Math.floor((Math.random() * arr.length));
     return arr[pos];
+  }
+
+  $scope.getRandomLength = function() {
+    return Math.floor((Math.random() * 1000));
+
   }
 
   $scope.getRandomName = function() {
