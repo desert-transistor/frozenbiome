@@ -33,7 +33,7 @@ module.exports = {
           form.on('file', function(name, file){
             var temportal_path = file.path;
             var extension = file.path.substring(file.path.lastIndexOf('.'));
-            destination_path = __dirname + uuid.v4() + extension;
+            destination_path = __dirname + '/archives/' + uuid.v4() + extension;
             var input_stream = fs.createReadStream(temportal_path);
             var output_stream = fs.createWriteStream(destination_path);
             input_stream.pipe(output_stream);
