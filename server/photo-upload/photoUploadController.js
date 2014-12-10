@@ -7,32 +7,74 @@ var moment = require('moment');
 var path = require('path');
 var lodash = require('lodash');
 var imageMagick = Promise.promisifyAll(require('imagemagick'));
+var uuid = require('node-uuid');
 // var photoRouter = express.Router();
 
 module.exports = {
 
-      postPhoto: function(req, res){
-        var form = new multiparty.Form();
-        form.parse(req, function(err, fields, files) {
-          Object.keys(fields).forEach(function(name) {
-            console.log(fields);
-            console.log('got field named ' + name);
+        postPhoto: function(req, res){
+          var size = '';
+          var file_name = '';
+          var destination_path = '';
+          var form = new multiparty.Form();
+
+          form.on('error', function(err){
+            console.log('Error parsing form: ' + err.stack);
           });
 
-          Object.keys(files).forEach(function(name) {
-            fs.writeFile(fields.prompt_id.toString(), files, function(err){
-              if(err){ throw err; }
-              console.log('it is saved!');
-            })
-            console.log('got file named ' + name);
+          form.on('part', function(part){
+            if(!part.filename){
+              return;
+            }
+            size = part.byteCount;
+            file_name = part.filename;
           });
 
-          console.log('Upload completed!');
-          // res.setHeader('text/plain');
-          res.end('Received ' + files.length + ' files');
-        });
+          form.on('file', function(name, file){
+            var temportal_path = file.path;
+            var extension = file.path.substring(file.path.lastIndexOf('.'));
+            destination_path = '.archives/' + uuid.v4() + extension;
+            var input_stream = fs.createReadStream(temportal_path);
+            var output_stream = fs.createWriteStream(destination_path);
+            input_stream.pipe(output_stream);
+            input_stream.on('end', function(){
+              fs.unlinkSync(temportal_path);
+              console.log('Uploaded: ', file_name, size);
+            });
+          });
 
-      },
+          form.on('close', function(){
+            console.log('Uploaded!!');
+          });
+
+          form.parse(req);
+
+        },
+
+
+      // postPhoto: function(req, res){
+      //   var form = new multiparty.Form();
+      //   form.parse(req, function(err, fields, files) {
+      //     Object.keys(fields).forEach(function(name) {
+      //       console.log(fields);
+      //       console.log('got field named ' + name);
+      //     });
+
+      //     Object.keys(files).forEach(function(name) {
+      //       console.log(files.file);
+      //       fs.writeFile(fields.prompt_id.toString(), files.file, function(err){
+      //         if(err){ throw err; }
+      //         console.log('it is saved!');
+      //       })
+      //       console.log('got file named ' + name);
+      //     });
+
+      //     console.log('Upload completed!');
+      //     // res.setHeader('text/plain');
+      //     res.end('Received ' + files.length + ' files');
+      //   });
+
+      // },
 
       // fs.chmodAsync(filePath, '0777')
       // fs.renameAsync(filePath, newPath);
