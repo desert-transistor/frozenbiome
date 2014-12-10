@@ -6,8 +6,7 @@ var mongo_helpers = require('./db/mongo_helpers.js')
 var session = require('express-session');
 var marked = require('marked');
 var path = require('path');
-var PhotoUploadRouter = require('./photo-upload/photoUploadRoutes')
-// var imageMagick = require('imageMagick');
+var photoUploadRouter = require('./photo-upload/photoUploadRoutes')
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -20,7 +19,7 @@ app.use(session({
 
 app.use(express.static(__dirname + '/../client'));
 
-app.use('/api/photo-upload', photoRouter);
+app.use('/api/photo-upload', photoUploadRouter);
 
 //Set up routes
 var routes = {};

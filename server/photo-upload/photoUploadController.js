@@ -6,8 +6,7 @@ var fs = Promise.promisifyAll(require('fs'));
 var moment = require('moment');
 var path = require('path');
 var lodash = require('lodash');
-var imageMagick = Promise.promisifyAll(require('imageMagick'));
-var imageMagick = require('imageMagick');
+var imageMagick = Promise.promisifyAll(require('imagemagick'));
 var photoRouter = express.Router();
 
 photoRouter.post('/', function(req, res){
