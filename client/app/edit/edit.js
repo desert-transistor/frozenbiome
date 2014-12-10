@@ -38,7 +38,7 @@ angular.module('waffle.edit', [])
 
   $scope.checkSession = function() {
     Auth.checkSession()
-    .then(function(data) {
+    .then(function(data) {   ///data is UNDEFINED
       $rootScope.displayName = data.data.displayName;
       $rootScope.user = data.data.username;
       $rootScope.loggedIn = true;
@@ -56,6 +56,7 @@ angular.module('waffle.edit', [])
 
   $scope.onFileSelect = function(files){
     var file = files[0];
+    // console.log(file);
     $scope.upload = $upload.upload({
       method: 'POST',
       url:  'api/photo',
@@ -66,9 +67,14 @@ angular.module('waffle.edit', [])
       file: file
     })
     .progress(function(evt){
+      // console.log(evt);
       console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total))
     })
     .success(function(data, status, headers, config){
+      console.log(data);
+      console.log(status);
+      console.log(headers);
+      console.log(config);
       $state.reload();
     })
     .error(function(error){
