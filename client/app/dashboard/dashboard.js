@@ -7,8 +7,10 @@ angular.module('waffle.dashboard', ['masonry'])
   $rootScope.wafflers = [];
   $rootScope.waffler_ids = [];
 
-  $scope.getRandomSpan = function() {
-    return Math.floor((Math.random() * 100));
+  $scope.getRandomColSize = function() {
+    arr = ['col-md-2','col-md-4'];
+    var pos = Math.floor((Math.random() * arr.length));
+    return arr[pos];
   }
 
   $scope.getRandomName = function() {

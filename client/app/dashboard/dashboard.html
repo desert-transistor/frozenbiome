@@ -1,25 +1,17 @@
 <div class="container">
-  <div class="row">
-
-
-  
-    <!-- MAKE NEW POST-->
-    <!-- DASHBOARD AREA -->
-    <div ng-init="getAllPosts()" masonry='{ "itemSelector" : ".masonry-brick"}'>
+  <div class="row" ng-init="getAllPosts()" masonry='{ "itemSelector" : ".masonry-brick", "gutter": 10}'>
       <!--LIST OF USER POSTS -->
-        <div class="col-md-3 masonry-brick" ng-repeat="post in posts | orderBy:-'post.created'">
-            <h1><a ng-click="savePostInfo()" href="#/post">{{post.title}}</a></h1>
-            <!--POST SNIPPET-->
-            <p class="snippet">{{post.content | limitTo : 200}} ... </p>
-            <!--TODO: make visible only to users that are logged in and creators of post-->
-            <a ng-if="loggedIn" href="#/edit" ng-click="savePostInfo()"><span class="label label-success">Edit</span></a>
-            <a ng-if="loggedIn" href='#/dashboard' ng-click="deletePost()"><span class="label label-danger">Delete</span></a>
-        </div>
+    <div class="masonry-brick col-lg-4 thumb"  ng-repeat="post in posts | orderBy:-'post.created'">
+        <h1><a ng-click="savePostInfo()" href="#/post">{{post.title}}</a></h1>
+        <!--POST SNIPPET-->
+        <p class="snippet">{{post.content | limitTo : 200}} ... </p>
+        <!--TODO: make visible only to users that are logged in and creators of post-->
+        <a ng-if="loggedIn" href="#/edit" ng-click="savePostInfo()"><span class="label label-success">Edit</span></a>
+        <a ng-if="loggedIn" href='#/dashboard' ng-click="deletePost()"><span class="label label-danger">Delete</span></a>
     </div>
-
-    <button class="btn btn-blue btn-lrg btn-expand" ng-click="makePost()">Make New Post</button>
-      
+     
   </div>
+    <button class="btn btn-blue btn-lrg btn-expand" ng-click="makePost()">Make New Post</button>
 </div>
 
 
