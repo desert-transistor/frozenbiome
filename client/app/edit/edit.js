@@ -1,12 +1,13 @@
 angular.module('waffle.edit', [])
 
-.controller('EditController', ['$scope', '$rootScope', 'Edit', 'Dashboard', '$location', 'Auth', '$http', '$upload', function($scope, $rootScope, Edit, Dashboard, $location, Auth, $http, $upload) {
+.controller('EditController', ['$scope', '$rootScope', 'Edit', 'Dashboard', '$location', 'Auth', '$http', '$upload', '$state', function($scope, $rootScope, Edit, Dashboard, $location, Auth, $http, $upload, $state) {
 
   $scope.getRandomName = function() {
     arr = ['Alex Hawkins', 'Evan Spiler', 'David Kae', 'Grant Wu'];
     var pos = Math.floor((Math.random() * 4));
     return arr[pos];
   }
+  $scope.imageId = Auth.currentUser + $scope.title;
 
   $scope.submit = function(title, content, created) {
   	Edit.addPost(this.title, this.content, this.created, $rootScope.user)
@@ -46,7 +47,7 @@ angular.module('waffle.edit', [])
   }
 
   console.log("loading photo controller...")
-  $scope.id = null; //$state.params.id; //what is this??
+  
   $scope.dataLoaded = false;
   $scope.prompt = {};
   $scope.userId =  null;    //Auth.getUserId();
@@ -54,16 +55,18 @@ angular.module('waffle.edit', [])
   $scope.submissionPeriodIsOpen = false;
   $scope.photoTaken = false;
 
+  
   $scope.onFileSelect = function(files){
+    ///////////////////  START HERE!!!!   ////////////////
+    console.log($scope.title + Auth.currentUser);
     var file = files[0];
-    console.log(Auth.currentUser);
     console.log(file);
     $scope.upload = $upload.upload({
       method: 'POST',
       url:  'api/photo-upload',
       data: {
-        prompt_id: $scope.id,
-        user_id:   'blah'      //Auth.getUserId()
+        prompt_id: $scope.imageId,
+        user_id:   Auth.currentUser      
       },
       file: file
     })
