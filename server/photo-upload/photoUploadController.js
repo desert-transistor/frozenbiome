@@ -84,12 +84,12 @@ photoRouter.post('/', function(req, res){
   });
 });
 
-photoRouter.get('/', function(req, res){
-  models.Photo
-    .fetchAll()
-    .then(function(collection){
-      res.json(collection.toJSON()).end();
-    })
-})
+// photoRouter.get('/', function(req, res){
+//   models.Photo
+//     .fetchAll()
+//     .then(function(collection){
+//       res.json(collection.toJSON()).end();
+//     })
+// });
 
 module.exports = photoRouter;

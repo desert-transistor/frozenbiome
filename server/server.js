@@ -6,7 +6,8 @@ var mongo_helpers = require('./db/mongo_helpers.js')
 var session = require('express-session');
 var marked = require('marked');
 var path = require('path');
-var photoUploadRouter = require('./photo-upload/photoUploadRoutes')
+
+var photoUploadRouter = express.Router();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -29,7 +30,7 @@ var port = process.env.PORT || 8000;
 app.listen(port);
 console.log("Listening on localhost: " + port)
 
-
+require('./photo-upload/photoUploadRoutes')(photoUploadRouter);
 // require('./photo-upload/photoUploadRoutes')(photoRouter);
 
 
