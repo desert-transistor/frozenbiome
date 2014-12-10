@@ -1,11 +1,13 @@
 var express     = require('express');
+var app = express();
 var bodyParser = require('body-parser'); //bodyparser + json + urlencoder
 var morgan  = require('morgan'); // logger
 var mongo_helpers = require('./db/mongo_helpers.js')
 var session = require('express-session');
 var marked = require('marked');
-
-var app = express();
+var path = require('path');
+var PhotoUploadRouter = require('./photo-upload/photoUploadRoutes')
+// var imageMagick = require('imageMagick');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -18,8 +20,18 @@ app.use(session({
 
 app.use(express.static(__dirname + '/../client'));
 
+app.use('/api/photo-upload', photoRouter);
+
 //Set up routes
 var routes = {};
+
+var port = process.env.PORT || 8000;
+
+app.listen(port);
+console.log("Listening on localhost: " + port)
+
+
+// require('./photo-upload/photoUploadRoutes')(photoRouter);
 
 
 /********** GET REQUESTS ********/
@@ -172,5 +184,9 @@ app.delete('/deletePost*', function(req,res) {
 })
 
 
+
+
 // export our app for testing and flexibility, required by index.js
 module.exports = app;
+
+
