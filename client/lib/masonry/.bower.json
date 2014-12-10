@@ -42,7 +42,12 @@
     "commit": "7dfa30f678c7ca14b137ec195b8922ae5313a8f5"
   },
   "_source": "git://github.com/desandro/masonry.git",
+<<<<<<< HEAD
   "_target": "~3.2.1",
   "_originalSource": "masonry",
   "_direct": true
+=======
+  "_target": "~3.2.0",
+  "_originalSource": "masonry"
+>>>>>>> adds angular-masonry directive
 }
