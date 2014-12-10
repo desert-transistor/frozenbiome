@@ -1,5 +1,4 @@
-angular.module('waffle.dashboard', [])
-
+angular.module('waffle.dashboard', ['masonry'])
 
 .controller('DashboardController', function($scope, $rootScope, Dashboard, $timeout, $location, Auth, $stateParams) {
   $scope.posts = [];

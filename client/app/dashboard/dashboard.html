@@ -1,157 +1,28 @@
-<!--TODO: Only render posts if user logged in. And user their username.-->
-<div class="container" ng-init="checkSession()">
-
+<div class="container">
   <div class="row">
 
-    <!--SIDEBAR-->
 
-    <div class="col-md-4">
-      
-      <!-- MAKE NEW POST-->
-      <div ng-if='loggedIn' class="well new-post">
-        <button class="btn btn-blue btn-lrg btn-expand" ng-click="makePost()">Make New Post</button>
-      </div>
-
-      <!-- FILTER POSTS SEARCH-->
-      <div class="well">
-        <h4>Filter My Posts</h4>
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="query">
-          <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                 <span class="glyphicon glyphicon-search"></span>
-          </button>
-          </span>
-        </div>
-        <!-- /.input-group -->
-      </div>
-
-      <!-- OTHER USERS PANEL -->
-       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-init="getAllWafflers()">
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-              <a class="other-users" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Other Wafflers
-                <span class="drop-down-graphic glyphicon glyphicon-collapse-down pull-right"></span>
-              </a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <!--NG-REPEAT REAL USER DATA-->
-              <ul ng-repeat="waffler in wafflers | limitTo:5" class="list-group">
-                <li class="list-group-item">
-                  <a ng-href="#/users/{{waffler.username}}">{{waffler.displayName}}</a>
-                </li>
-              </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- SIDEBAR CATEGORIES -->
-      <div class="well">
-        <h4>My Popular Categories</h4>
-        <div class="row">
-          <div class="col-lg-6">
-            <ul class="list-unstyled">
-              <li><a href="#">Javascript</a>
-              </li>
-              <li><a href="#">Ruby</a>
-              </li>
-              <li><a href="#">Python</a>
-              </li>
-              <li><a href="#">PHP</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-6">
-            <ul class="list-unstyled">
-              <li><a href="#">Mongo</a>
-              </li>
-              <li><a href="#">Neo4J</a>
-              </li>
-              <li><a href="#">MySQL</a>
-              </li>
-              <li><a href="#">PostgreSQL</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- /.row -->
-      </div>
-
-      <!-- SIDEBAR RANDOM WIDGET -->
-      <div class="well">
-        <h4>Latest from WafflePress</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-      </div>
-
-      <!--SIDEBAR IMAGES-->
-      <div class="well">
-        <h4>Latest Image Uploads</h4>
-        <div class="img-thumbnail img-responsive">
-          <img src="http://placehold.it/145x145" alt="...">
-        </div>
-        <div class="img-thumbnail img-responsive">
-          <img src="http://placehold.it/145x145" alt="...">
-        </div>
-        <div class="spacer">
-        </div>
-        <div class="img-thumbnail img-responsive">
-          <img src="http://placehold.it/145x145" alt="...">
-        </div>
-        <div class="img-thumbnail img-responsive">
-          <img src="http://placehold.it/145x145" alt="...">
-        </div>
-        <!-- /.input-group -->
-      </div>
-
-    </div>
+  
+    <!-- MAKE NEW POST-->
     <!-- DASHBOARD AREA -->
-    <div class="col-lg-8">
-      <div class="well dashboard-spacing">
-        <!--<h1 class="dashboard-header">{{ getRandomName() }}'s Dashboard</h1>-->
-        
-        <h1 ng-if="checkName()" class="dashboard-header">{{displayName}}' Waffleboard<span class="pull-right badge post-count">{{posts.length}}</span></h1>
-
-        <h1 ng-if="!checkName()" class="dashboard-header">{{displayName}}'s Waffleboard<span class="pull-right badge post-count">{{posts.length}}</span></h1>
-
-      </div>
-      <div ng-init="getAllPosts()">
-        <!--LIST OF USER POSTS -->
-        <ul class="list-group">
-          <!--<button ng-click="getAllPosts()">Get Posts</button>-->
-          <li class="list-group-item" ng-repeat="post in posts | filter:query | orderBy:-'post.created'">
-            <!--FAKE COMMENT COUNT-->
-            <span class="badge">{{ getRandomSpan() }}</span>
-            <h2><a ng-click="savePostInfo()" href="#/post">{{post.title}}</a></h2>
-            <!--POST CREATION DATE-->
-            <p class="date">
-              <span class="glyphicon glyphicon-time"></span> 
-                Posted on {{ post.created | date }} at {{ post.created | date: 'shortTime'}}
-            </p>
+    <div ng-init="getAllPosts()" masonry='{ "itemSelector" : ".masonry-brick"}'>
+      <!--LIST OF USER POSTS -->
+        <div class="col-md-3 masonry-brick" ng-repeat="post in posts | orderBy:-'post.created'">
+            <h1><a ng-click="savePostInfo()" href="#/post">{{post.title}}</a></h1>
             <!--POST SNIPPET-->
-            <p class="snippet">{{post.content | limitTo : 200}} ...
-              <a ng-show="true" class="read-more" href="#/post" role="button" ng-click="savePostInfo()">
-                <span class="glyphicon glyphicon-hand-right">
-              </a>
-            </p>
-            <!--EDIT BUTTON (only show if user is logged in)-->
+            <p class="snippet">{{post.content | limitTo : 200}} ... </p>
             <!--TODO: make visible only to users that are logged in and creators of post-->
             <a ng-if="loggedIn" href="#/edit" ng-click="savePostInfo()"><span class="label label-success">Edit</span></a>
             <a ng-if="loggedIn" href='#/dashboard' ng-click="deletePost()"><span class="label label-danger">Delete</span></a>
-          </li>
-        </ul>
-      </div>
-      <!--PAGINATION-->
-      <nav ng-if="posts.length > 5">
-        <ul class="pager">
-          <li><a href="#">Previous</a>
-          </li>
-          <li><a href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
+        </div>
     </div>
+
+    <button class="btn btn-blue btn-lrg btn-expand" ng-click="makePost()">Make New Post</button>
+      
   </div>
 </div>
+
+
+<!--             <span class="badge">{{ getRandomSpan() }}</span>
+ -->
+
