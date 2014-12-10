@@ -1,14 +1,16 @@
 angular.module('waffle', [
+  'ui.router',
+  // 'ng-file-upload',
+  // 'ng-file-upload-shim',
+  'angularFileUpload',
   'waffle.services',
   'waffle.dashboard',
   'waffle.edit',
   'waffle.post',
   'waffle.auth',
   'waffle.nav',
-  'ui.router',
   'yaru22.md',
-  'ngSanitize',
-  'PhotoController'
+  'ngSanitize'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
