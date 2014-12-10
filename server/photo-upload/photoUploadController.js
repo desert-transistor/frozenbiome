@@ -38,12 +38,12 @@ module.exports = {
       input_stream.on('end', function(){
         fs.unlinkSync(temportal_path);
         console.log('Uploaded: ', file_name, size);
+        res.send(destination_path);
       });
     });
 
     form.on('close', function(){
       console.log('Uploaded!!');
-      // res.send(destination_path);
     });
 
     form.parse(req);

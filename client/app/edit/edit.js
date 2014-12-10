@@ -7,7 +7,7 @@ angular.module('waffle.edit', [])
     var pos = Math.floor((Math.random() * 4));
     return arr[pos];
   }
-  $scope.imageId = Auth.currentUser + $scope.title;
+  $scope.imageId = '';
 
   $scope.submit = function(title, content, created) {
   	Edit.addPost(this.title, this.content, this.created, $rootScope.user)
@@ -57,10 +57,9 @@ angular.module('waffle.edit', [])
 
   
   $scope.onFileSelect = function(files){
-    ///////////////////  START HERE!!!!   ////////////////
-    console.log($scope.title + Auth.currentUser);
+                            console.log($scope.title + Auth.currentUser);
     var file = files[0];
-    console.log(file);
+                            console.log(file);
     $scope.upload = $upload.upload({
       method: 'POST',
       url:  'api/photo-upload',
@@ -75,10 +74,11 @@ angular.module('waffle.edit', [])
       console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total))
     })
     .success(function(data, status, headers, config){
-      console.log(data);
-      console.log(status);
-      console.log(headers);
-      console.log(config);
+      $scope.imageId = data;
+      console.log($scope.imageId);
+                            console.log(status);
+                            console.log(headers);
+                            console.log(config);
       $state.reload();
     })
     .error(function(error){
