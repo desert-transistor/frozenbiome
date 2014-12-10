@@ -105,7 +105,14 @@ angular.module('waffle.services', [])
   }
 
   var loggedIn = false;
+
   var user = '';
+
+  var currentUser = '';
+
+  var saveUser = function(name){
+    this.currentUser = name;
+  }
 
   return {
   	login: login,
@@ -113,6 +120,8 @@ angular.module('waffle.services', [])
     logout: logout,
     loggedIn: loggedIn,
     user: user,
+    currentUser: currentUser,
+    saveUser: saveUser,
     checkSession: checkSession
   };
 })

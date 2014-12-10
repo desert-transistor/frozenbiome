@@ -56,6 +56,7 @@ angular.module('waffle.edit', [])
 
   $scope.onFileSelect = function(files){
     var file = files[0];
+    console.log(Auth.currentUser);
     console.log(file);
     $scope.upload = $upload.upload({
       method: 'POST',

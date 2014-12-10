@@ -1,7 +1,5 @@
 angular.module('waffle', [
   'ui.router',
-  // 'ng-file-upload',
-  // 'ng-file-upload-shim',
   'angularFileUpload',
   'waffle.services',
   'waffle.dashboard',
