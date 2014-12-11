@@ -13,7 +13,6 @@ h4{
   font-size: 1.6em;
 }
 .snippet {
-  font-style: italic;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 1.2em;
 }
@@ -227,4 +226,13 @@ h4{
 }
 .panel>.panel-collapse>.list-group .list-group-item {
   border-width: 0px 0;
+}
+
+.thumb {
+  width: 32.5%;
+  border: 1px solid lightgrey;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 1px 0px 16px 1px rgba(211,211,211,1);
+  -moz-box-shadow: 1px 0px 16px 1px rgba(211,211,211,1);
+  box-shadow: 1px 0px 16px 1px rgba(211,211,211,1);
 }

@@ -1,5 +1,61 @@
-angular.module('waffle.dashboard', [])
+angular.module('waffle.dashboard', ['masonry','ui.directives'])
 
+.directive('packery', ['$rootScope', '$timeout',
+  function($rootScope, $timeout) {
+    return {
+      restrict: 'A',
+      scope: true,
+      link: function(scope, element, attrs) {
+        console.log("link called on", element[0]);
+        scope.element = element;
+        if (!$rootScope.packery) {
+          $rootScope.packery = new Packery(element[0].parentElement, {
+            columnWidth: '.thumb',
+            itemSelector: '.thumb',
+            gutter: 10,
+          });
+
+          var draggable1 = new Draggabilly(element[0]);
+          $rootScope.packery.bindDraggabillyEvents(draggable1);
+
+          var orderItems = function() {
+            var itemElems = $rootScope.packery.getItemElements();
+            $(itemElems).each(function(i, itemElem) {
+              $(itemElem);
+            });
+          };
+
+          $rootScope.packery.on('layoutComplete', orderItems);
+          $rootScope.packery.on('dragItemPositioned', orderItems);
+
+
+        } else {
+          // console.log("else", element[0]);
+          $timeout(function() {
+            $rootScope.packery.appended(element[0])
+          });
+          var draggable2 = new Draggabilly(element[0]);
+          $rootScope.packery.bindDraggabillyEvents(draggable2);
+
+
+        }
+        $timeout(function() {
+          $rootScope.packery.layout();
+        });
+
+
+        // watch for destroying an item
+        scope.$on('$destroy', function() {
+          $rootScope.packery.remove(scope.element[0]);
+          scope.packery.layout();
+        });
+
+
+      }
+    };
+
+  }
+])
 
 .controller('DashboardController', function($scope, $rootScope, Dashboard, $timeout, $location, Auth, $stateParams) {
   $scope.posts = [];
@@ -8,8 +64,15 @@ angular.module('waffle.dashboard', [])
   $rootScope.wafflers = [];
   $rootScope.waffler_ids = [];
 
-  $scope.getRandomSpan = function() {
-    return Math.floor((Math.random() * 100));
+  $scope.getRandomColSize = function() {
+    arr = ['col-md-2','col-md-4'];
+    var pos = Math.floor((Math.random() * arr.length));
+    return arr[pos];
+  }
+
+  $scope.getRandomLength = function() {
+    return Math.floor((Math.random() * 1000));
+
   }
 
   $scope.getRandomName = function() {

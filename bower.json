@@ -25,5 +25,8 @@
     "client/lib",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "packery": "~1.3.0"
+  }
 }
