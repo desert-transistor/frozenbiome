@@ -12,6 +12,9 @@ h4{
   font-weight: bold;
   font-size: 1.6em;
 }
+.media-object {
+  padding-right: 15px;
+}
 .snippet {
   font-style: italic;
   font-family: 'PT Sans Narrow', sans-serif;

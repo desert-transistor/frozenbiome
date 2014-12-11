@@ -1,7 +1,7 @@
 <div ng-controller='CommentController' ng-init="commentArray" id="commentcontroller">
 
  <!-- Comment -->
-  <div class="well">
+      <div class="well">
         <h4>Leave a Comment:</h4>
         <form role="form">
           <div class="form-group">
@@ -14,19 +14,18 @@
       <hr>
 
 
-      <div class="media">
-        <ul class="comment-list">
-          <li class="comment-item" ng-repeat="comment in commentArray">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">{{comment.commenter}}
-                                <small>{{comment.date | date: 'medium'}}</small>
-              </h4>{{comment.text}}
-            </div>
-          </li>
-        </ul>
+      <div class="media" ng-repeat="comment in commentArray" >
+        <div class="comment-item" style="list-style-type: none;">
+          <a class="pull-left" href="#">
+            <img class="media-object" src="http://placehold.it/64x64" alt="">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">{{comment.commenter}}
+              <small>{{comment.date | date: 'medium'}}</small>
+            </h4>{{comment.text}}
+          </div>
+          <br>
+        </div>
       </div>
 
       <!-- Comment -->
@@ -50,7 +49,7 @@
             </div>
           </div> -->
           <!-- End Nested Comment -->
-        </div>
+<!--         </div>
       </div>
-    </div>
+    </div> -->
 </div>
