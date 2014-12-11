@@ -23,5 +23,7 @@ angular.module('waffle.comment', [])
     console.log($scope.commentArray);
   }
 
+  
+
 })
 
