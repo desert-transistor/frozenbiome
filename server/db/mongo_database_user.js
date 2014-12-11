@@ -6,8 +6,20 @@ var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
 
 //30 second timeout
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };  
+var options = {
+  server: {
+    socketOptions: {
+      keepAlive: 1,
+      connectTimeoutMS: 30000
+    }
+  }, 
+  replset: {
+    socketOptions: {
+      keepAlive: 1,
+      connectTimeoutMS : 30000
+    }
+  }
+};  
 
 //Mongoose uses a different url format that standard mongodb. This helps us
 //convert.
@@ -22,14 +34,8 @@ if (mongooseUri) { //If we have an env variable in prod, use that
   mongooseUri = 'mongodb://localhost/waffledb'; //Otherwise, connect to your local instance. Choose name here.
 }
 
-console.log("INITIALIZING CONNECTION TO MONGOOSE AT: ", mongooseUri)
 mongoose.connect(mongooseUri, options, function (err, res) {
-    if (err) { 
-        console.log('Connection refused to ' + mongooseUri);
-        console.log(err);
-    } else {
-        console.log('Connection successful to: ' + mongooseUri);
-    }
+    if (err) throw err;
 });
 
 
