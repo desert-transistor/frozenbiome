@@ -8,6 +8,8 @@ var path = require('path');
 var lodash = require('lodash');
 var uuid = require('node-uuid');
 
+
+
 module.exports = {
 
   postPhoto: function(req, res){
@@ -31,14 +33,15 @@ module.exports = {
     form.on('file', function(name, file){
       var temportal_path = file.path;
       var extension = file.path.substring(file.path.lastIndexOf('.'));
-      destination_path = __dirname + '/archives/' + uuid.v4() + extension;
+      var imageName = uuid.v4() + extension;
+      destination_path = path.join(__dirname, '/archives/', imageName);
       var input_stream = fs.createReadStream(temportal_path);
       var output_stream = fs.createWriteStream(destination_path);
       input_stream.pipe(output_stream);
       input_stream.on('end', function(){
         fs.unlinkSync(temportal_path);
         console.log('Uploaded: ', file_name, size);
-        res.send(destination_path);
+        res.send('archives/' + imageName);
       });
     });
 

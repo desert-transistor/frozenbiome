@@ -19,6 +19,8 @@ app.use(session({
 }));
 
 app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/photo-upload'));
+
 
 app.use('/api/photo-upload', photoUploadRouter);
 
