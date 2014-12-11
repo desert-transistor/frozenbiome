@@ -1,26 +1,13 @@
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
     <a class="navbar-brand waffleLogo" href="#/dashboard"><img align='left' src='http://www.wpclipart.com/food/breakfast/waffle/waffle_round_small.png' width="40" height="40"><a class="navbar-brand waffleName">WafflePress</a></a>
   </div>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div ng-controller='NavController' class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <!--     <form class="navbar-form navbar-left" ng-if="loggedIn">
     </form> -->
     <ul class="nav navbar-nav navbar-right">
-      <li ng-if="loggedIn"><a href="#/users/{{ }}">{{displayName}}</a></li>
-      <li ng-if="loggedIn">
-        <a ng-href="#/users/{{ user.profile.uid }}">
-          <img height="25" width="25" src="http://www.campsitechatter.com/images/profile/default-male-250.png" class="nav-pic img-responsive" />
-        </a>
-      </li>
+      <div ng-if="loggedIn"><a href="#/users/{{ user.profile.uid }}">{{displayName}}</a></div>
       <li ng-if="loggedIn">
         <a href="#/login" ng-click="logout()">Logout</a>
       </li>
