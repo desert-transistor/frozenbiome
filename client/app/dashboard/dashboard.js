@@ -1,4 +1,4 @@
-angular.module('waffle.dashboard', ['masonry','ui.directives'])
+angular.module('waffle.dashboard', ['ui.directives'])
 
 .directive('packery', ['$rootScope', '$timeout',
   function($rootScope, $timeout) {
