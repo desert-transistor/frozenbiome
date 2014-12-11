@@ -228,3 +228,8 @@ h4{
 .panel>.panel-collapse>.list-group .list-group-item {
   border-width: 0px 0;
 }
+
+.post-image{
+  height: 40%;
+  width: 40%;
+}
