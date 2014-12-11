@@ -7,11 +7,11 @@ angular.module('waffle.edit', [])
     var pos = Math.floor((Math.random() * 4));
     return arr[pos];
   }
-  $scope.imageId = '';
 
   $scope.submit = function(title, content, created) {
-  	Edit.addPost(this.title, this.content, this.created, $rootScope.user)
-  	.success(function(data) {
+    console.log(Edit.imageId);
+  	Edit.addPost(this.title, this.content, $rootScope.user, Edit.imageId || null, this.created)
+    .success(function(data) {
       console.log("SUCCESS: ", data)
     })
     .error(function(err, data) {
@@ -74,12 +74,12 @@ angular.module('waffle.edit', [])
       console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total))
     })
     .success(function(data, status, headers, config){
-      $scope.imageId = data;
-      console.log($scope.imageId);
+      Edit.imageId = data;
+      console.log(Edit.imageId);
                             console.log(status);
                             console.log(headers);
                             console.log(config);
-      $state.reload();
+      // $state.reload();                             ///fixes the issue of the content disappearing. What is the side affect of removing it??
     })
     .error(function(error){
       console.log('ERROR: '. error);

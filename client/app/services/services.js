@@ -3,11 +3,14 @@ angular.module('waffle.services', [])
 
 .factory('Edit', function ($http, $location, $window, $rootScope) {
   //getPost() if post exists, else if new post, don't
-  var addPost = function (title, content, user) {
+
+  var imageId = ''
+
+  var addPost = function (title, content, user, imageId) {
     return $http({
       method: 'POST',
       url: '/newPost',
-      data: { title: title, content: content, username: user }
+      data: { title: title, content: content, username: user, imageId: imageId }
     });
   }
   
@@ -20,6 +23,7 @@ angular.module('waffle.services', [])
   }
 
   return {
+    imageId: imageId,
     addPost: addPost,
     updatePost: updatePost
   };

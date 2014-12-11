@@ -16,13 +16,14 @@ var saveNewUser = exports.saveNewUser = function(username, password, displayName
 }
 
 
-var saveNewPost = exports.saveNewPost = function(username, displayName, title, content, errCallback, successCallback, isPublished) {
+var saveNewPost = exports.saveNewPost = function(username, displayName, title, content, imageId, errCallback, successCallback, isPublished) {
 	var post = new db.postModel({
 		title: title,
 		// is_published: isPublished,
 		content: content,
 		author: displayName,
-		username: username
+		username: username,
+    imageId: imageId
 	})
 
   //Won't write if user not found, but won't throw error either
