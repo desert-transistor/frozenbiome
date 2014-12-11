@@ -13,6 +13,9 @@ angular.module('waffle.comment', [])
     newComment.date = time;
     newComment.text = content;
     $scope.commentArray.push(newComment);
+
+    $scope.commentContent = '';
+    console.log($scope.commentContent);
     // $scope.commenter = $rootScope.user;
     // $scope.date = created;
     // $scope.text = content;
@@ -22,8 +25,6 @@ angular.module('waffle.comment', [])
     // col8.appendChild(commentEl);
     console.log($scope.commentArray);
   }
-
-  
 
 })
 

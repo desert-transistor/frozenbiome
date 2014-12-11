@@ -3,11 +3,11 @@
  <!-- Comment -->
       <div class="well">
         <h4>Leave a Comment:</h4>
-        <form role="form">
+        <form role="form" name="commentForm">
           <div class="form-group">
-            <textarea ng-model="commentContent" class="form-control" rows="3" placeholder="My respectful and constructive comment"></textarea>
+            <textarea ng-model="commentContent" class="form-control commentTextArea" rows="3" placeholder="My respectful and constructive comment"></textarea>
           </div>
-          <button type="submit" class="btn btn-blue" ng-click="submitComment(commentContent, created)">Submit</button>
+          <button type="submit" class="btn btn-blue" ng-click="submitComment(commentContent, created);">Submit</button>
         </form>
       </div>
 
@@ -23,7 +23,6 @@
             <h4 class="media-heading" ng-init="limit= 200">{{comment.commenter}}
               <small>{{comment.date | date: 'medium'}}</small>
             </h4>{{comment.text | limitTo: limit}}{{comment.text.length > limit ? '...' : ''}} <a ng-show="comment.text.length > limit" href ng-click="limit=comment.text.length"> More </a>
-            <!-- <button ng-click=:"limit = comment.text.length">View</button> -->
           </div>
           <br>
         </div>
