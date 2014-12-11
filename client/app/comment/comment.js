@@ -7,9 +7,10 @@ angular.module('waffle.comment', [])
   $scope.submitComment = function(content, created) {
     console.log(content);
     console.log(this.created);
+    var time = new Date();
     var newComment = {};
     newComment.commenter = $rootScope.user;
-    newComment.date = created;
+    newComment.date = time;
     newComment.text = content;
     $scope.commentArray.push(newComment);
     // $scope.commenter = $rootScope.user;

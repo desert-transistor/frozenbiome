@@ -22,7 +22,7 @@
             </a>
             <div class="media-body">
               <h4 class="media-heading">{{comment.commenter}}
-                                <small>{{comment.date}}</small>
+                                <small>{{comment.date | date: 'medium'}}</small>
               </h4>{{comment.text}}
             </div>
           </li>
