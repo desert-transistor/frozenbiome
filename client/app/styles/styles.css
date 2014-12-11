@@ -16,6 +16,10 @@ h4{
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 1.2em;
 }
+
+.snippet img {
+  width: 100%;
+}
 .dashboard-header {
   font-family: 'Lobster', cursive;
   font-size: 3em;
