@@ -22,7 +22,7 @@
           <div class="media-body">
             <h4 class="media-heading">{{comment.commenter}}
               <small>{{comment.date | date: 'medium'}}</small>
-            </h4>{{comment.text}}
+            </h4>{{comment.text | limitTo: 200}}{{comment.text.length > 200 ? '...' : ''}}
           </div>
           <br>
         </div>
