@@ -39,6 +39,7 @@ textarea:focus {
         </button> -->
         <form class='half-form'>
           <input type="submit" ng-model="files" ng-file-select="onFileSelect(files)" class="app-prompt-upload" value="Upload Photo"/>
+          <div ng-show="imageNameToDisplay">Image successfully uploaded!</div>
         </form>
       </div>
       <div class="form-group">

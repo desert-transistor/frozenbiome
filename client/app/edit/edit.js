@@ -75,6 +75,7 @@ angular.module('waffle.edit', [])
     })
     .success(function(data, status, headers, config){
       Edit.imageId = data;
+      $scope.imageNameToDisplay = Edit.imageId;
       console.log(Edit.imageId);
                             console.log(status);
                             console.log(headers);
