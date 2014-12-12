@@ -6,7 +6,6 @@ angular.module('waffle.dashboard', ['ui.directives'])
       restrict: 'A',
       scope: true,
       link: function(scope, element, attrs) {
-        // console.log("link called on", element[0]);
         scope.element = element;
         if (!$rootScope.packery) {
           $rootScope.packery = new Packery(element[0].parentElement, {
@@ -24,9 +23,16 @@ angular.module('waffle.dashboard', ['ui.directives'])
             });
           };
 
+          var done = function(){
+            var itemElems = $rootScope.packery.getItemElements();
+            $(itemElems).each(function(i, itemElem) {
+              var order = itemElem.children[0].tabIndex;
+              console.log("Update posts[" + i + "] to now be " + order);
+            });
+          };
+
           $rootScope.packery.on('layoutComplete', orderItems);
-          console.log("complete");
-          $rootScope.packery.on('dragItemPositioned', orderItems);
+          $rootScope.packery.on('dragItemPositioned', done);
 
 
         } else {
@@ -63,6 +69,10 @@ angular.module('waffle.dashboard', ['ui.directives'])
   $scope.post_ids = [];
   $rootScope.wafflers = [];
   $rootScope.waffler_ids = [];
+
+  $scope.getPositions = function(){
+    $scope.posts.forEach(console.log(post.id));
+  }
 
   $scope.getRandomColSize = function() {
     arr = ['col-md-2','col-md-4'];

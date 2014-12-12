@@ -2,21 +2,20 @@
 <div class="container">
   <div class="row"  ng-init="getAllPosts()" ng-model="posts"  >
       <!--LIST OF USER POSTS -->
-    <div packery class="col-lg-4 thumb"  ng-repeat="post in posts | orderBy:-'post.position'" >
+    <div packery class="col-lg-4 thumb" ng-repeat="post in posts | orderBy:-'post.position'" >
+      <section tabindex={{$index}}> <!-- for tracking position -->
         <h1><a ng-click="savePostInfo()" href="#/post">{{post.title}}</a></h1>
-        
         <div ng-show="post.imageUrl" ng-repeat="image in post.imageUrl">
           <img class="post-image" src="{{image}}"/>
         </div>
-        <!--POST SNIPPET-->
         <p class="snippet" ng-bind-html="post.markedContent"></p>
-        <!--TODO: make visible only to users that are logged in and creators of post-->
-        <a  href="#/edit" class="do-something-to-post" ng-click="savePostInfo()"><span class="label label-success">Edit</span></a>
-        <a  href='#/dashboard' class="do-something-to-post" ng-click="deletePost()"><span class="label label-danger">Delete</span></a>
+        <a ng-if="loggedIn" href="#/edit" ng-click="savePostInfo()"><span class="label label-success">Edit</span></a>
+        <a ng-if="loggedIn" href='#/dashboard' ng-click="deletePost()"><span class="label label-danger">Delete</span></a>
+      </section>
     </div>
      
   </div>
-    <button class="btn btn-blue btn-lrg btn-expand" ng-click="makePost()">Make New Post</button>
+    <button class="btn btn-blue btn-lrg btn-expand" ng-click="makePost()">Make New Post</button> 
 </div>
 
 
