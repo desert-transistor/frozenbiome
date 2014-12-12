@@ -10,8 +10,10 @@ angular.module('waffle.auth', [])
 		}
 		Auth.login($scope.username, $scope.password)
 		.then(function(data){
+			console.log(data);
 			$rootScope.loggedIn = true;
 			$rootScope.user = $scope.username;
+			// $rootScope.userId = data._id
 			Auth.saveUser($scope.username);
 			$location.path('/');
 			//TODO redirect to dashboard
