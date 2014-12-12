@@ -6,7 +6,7 @@ var controller = {};
 controller.index = function(req, res) {
   User.find(req.query, '-password -blogposts', function(err, users) {
     if(err) return res.send(500, err);
-    res.json(200, users);
+    res.status(200).json(users);
   });
 };
 
