@@ -91,8 +91,8 @@ angular.module('waffle.services', [])
 .factory('Auth', function ($http, $location, $window) {
   var login = function (username, password) {
     return $http({
-      method: 'GET',
-      url: '/api/users/',
+      method: 'POST',
+      url: '/auth/login',
       data: {username: username}
     })
   }

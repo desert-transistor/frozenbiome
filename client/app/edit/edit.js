@@ -10,7 +10,8 @@ angular.module('waffle.edit', [])
 
   $scope.submit = function(title, content, created) {
     console.log(Edit.imageId);
-  	Edit.addPost(this.title, this.content, $rootScope.user, Edit.imageId || null, this.created)
+    console.log($rootScope.userId);
+  	Edit.addPost(this.title, this.content, $rootScope.user, Edit.imageId || null, this.created, $rootScope.userId)
     .success(function(data) {
       console.log("SUCCESS: ", data)
     })

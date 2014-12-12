@@ -83,9 +83,11 @@ angular.module('waffle.dashboard', ['ui.directives'])
 
   $scope.getAllPosts = function() {
     console.log("GETTING POSTS")
-    Dashboard.getAllPosts()
+    console.log($rootScope.userId);
+    Dashboard.getAllPosts($rootScope.userId)
       .then(function(data) {
-        data.posts.forEach(function(post) {
+            console.log(data)
+        data.blogposts.forEach(function(post) {
           console.log(post)
           if ($scope.post_ids.indexOf(post._id) == -1) {
             $scope.posts.push(post);
