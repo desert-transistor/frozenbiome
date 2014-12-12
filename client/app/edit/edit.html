@@ -14,9 +14,9 @@ textarea:focus {
         <li class="active">Edit</li>
       </ol>
 
-    <form role="form" align="center">
+    <form role="form" align="center" ng-controller="EditController">
       <div class="editing-tools">
-        <button type="button" class="btn btn-default" aria-label="Left Align">
+        <!-- <button type="button" class="btn btn-default" aria-label="Left Align">
           <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn btn-default" aria-label="Center Align">
@@ -33,10 +33,16 @@ textarea:focus {
         </button>
         <button type="button" class="btn btn-default" aria-label="Add List">
           <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" aria-label="Add Picture">
+        </button> -->
+        <!-- <button type="button" class="btn btn-default" aria-label="Add Picture">
           <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
-        </button>
+        </button> -->
+        <form class='half-form'>
+          <input type="submit" ng-model="files" ng-file-select="onFileSelect(files)" ng-multiple="true" class="app-prompt-upload" value="Upload Photo"/>
+          <div ng-show="imageNamesToDisplay" ng-repeat="imageNameToDisplay in imageNamesToDisplay">
+            <img class="post-thumbnail" src="{{imageNameToDisplay}}"/>
+          </div>
+        </form>
       </div>
       <div class="form-group">
         <textarea ng-model="title" class="title" placeholder='"My Waffle Post"'></textarea>
@@ -45,7 +51,7 @@ textarea:focus {
         <textarea ng-model="content" class="content" placeholder='Write tasty thoughts here..'></textarea>
       </div>
       <input ng-if="!isUpdate" class="btn btn-blue pressBtn" ng-click="submit(title, content, created)" value="Press New" type="submit" />
-      <input ng-if="isUpdate" class="btn btn-green pressBtn" ng-click="updatePost(title, content)" value="Update" type="submit" />
+      <input ng-if="isUpdate" class="btn btnn-green pressBtn" ng-click="updatePost(title, content)" value="Update" type="submit" />
     </form>
   </div>
 </div>

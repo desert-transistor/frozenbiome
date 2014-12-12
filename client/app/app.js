@@ -1,4 +1,6 @@
 angular.module('waffle', [
+  'ui.router',
+  'angularFileUpload',
   'waffle.services',
   'waffle.dashboard',
   'waffle.edit',
@@ -6,7 +8,6 @@ angular.module('waffle', [
   'waffle.auth',
   'waffle.nav',
   'waffle.comment',
-  'ui.router',
   'yaru22.md',
   'ngSanitize'
 ])

@@ -2,3 +2,7 @@
 *.swo
 node_modules
 /data/**
+**/.DS_Store
+.DS_Store
+server/api/photo/archives/*
+!**/.gitkeep
