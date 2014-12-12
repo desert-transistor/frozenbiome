@@ -1,10 +1,12 @@
 var userRouter = require('./api/user');
 var blogpostRouter = require('./api/blogpost');
 var authRouter = require('./auth');
+var photoRouter = require('./api/photo')
 
 module.exports = function router (app) {
   app.use('/api/users', userRouter);
   app.use('/api/blogposts', blogpostRouter);
+  app.use('/api/photos', photoRouter);
   app.use('/auth', authRouter);
 
   // All undefined asset or api routes should return a 404

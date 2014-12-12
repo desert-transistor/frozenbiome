@@ -63,7 +63,7 @@ angular.module('waffle.edit', [])
                             console.log(file);
     $scope.upload = $upload.upload({
       method: 'POST',
-      url:  'api/photo-upload',
+      url:  'api/photos/',
       data: {
         prompt_id: $scope.imageId,
         user_id:   Auth.currentUser      
