@@ -20,9 +20,10 @@
             <img class="media-object" src="http://placehold.it/64x64" alt="">
           </a>
           <div class="media-body">
-            <h4 class="media-heading" ng-init="limit= 200">{{comment.commenter}}
+            <h4 class="media-heading" ng-init="limit= 200; moreShown = false">{{comment.commenter}}
               <small>{{comment.date | date: 'medium'}}</small>
-            </h4>{{comment.text | limitTo: limit}}{{comment.text.length > limit ? '...' : ''}} <a ng-show="comment.text.length > limit" href ng-click="limit=comment.text.length"> More </a>
+            </h4>{{comment.text | limitTo: limit}}{{comment.text.length > limit ? '...' : ''}} <a ng-show="comment.text.length > limit" href ng-click="limit=comment.text.length; moreShown = true"> More </a>
+            <a ng-show="moreShown" href ng-click="limit=200; moreShown = false"> Less </a>
           </div>
           <br>
         </div>
