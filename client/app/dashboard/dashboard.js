@@ -10,9 +10,8 @@ angular.module('waffle.dashboard', ['ui.directives'])
         scope.element = element;
         if (!$rootScope.packery) {
           $rootScope.packery = new Packery(element[0].parentElement, {
-            columnWidth: '.thumb',
             itemSelector: '.thumb',
-            gutter: 10,
+            gutter: 20,
           });
 
           var draggable1 = new Draggabilly(element[0]);
@@ -26,6 +25,7 @@ angular.module('waffle.dashboard', ['ui.directives'])
           };
 
           $rootScope.packery.on('layoutComplete', orderItems);
+          console.log("complete");
           $rootScope.packery.on('dragItemPositioned', orderItems);
 
 
