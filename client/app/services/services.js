@@ -48,10 +48,10 @@ angular.module('waffle.services', [])
   }
 
   //none yet in the new server
-  var deletePost = function (postID) {
+  var deletePost = function (postID, userId) {
     return $http({
       method: 'DELETE',
-      url: '/deletePost/'+ postID
+      url: '/api/blogposts/'+ postID +'?userId=' + userId ///some postId
     })
   }
 

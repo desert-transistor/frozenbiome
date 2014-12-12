@@ -47,6 +47,18 @@ controller.update = function(req, res) {
 
 }
 
+controller.delete = function(req, res){
+  var userId = req.query.userId;
+  if (!userId) return res.status(400).send('send userId=userId in query params');
+  User.findById(userId, function(err, user) {
+    if (err) return res.status(500).send('error in finding userId: ' + userId);
+
+    user.blogposts.id(req.params.id).remove();
+    user.save();
+    res.status(200).send('Deleted');
+  });
+}
+
 
 
 module.exports = controller;

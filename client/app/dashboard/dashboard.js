@@ -115,9 +115,10 @@ angular.module('waffle.dashboard', ['ui.directives'])
   }
 
   $scope.deletePost = function() {
+    console.log('yoyoyo')
     if (confirm('Are sure you want to delete this post?')) {
         console.log("**************  DELETE POST: ", this.post._id)
-        Dashboard.deletePost(this.post._id)
+        Dashboard.deletePost(this.post._id, $rootScope.userId)
         .then(function(data) {
           location.reload();
         })
