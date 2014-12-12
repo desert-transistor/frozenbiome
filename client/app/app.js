@@ -7,6 +7,7 @@ angular.module('waffle', [
   'waffle.post',
   'waffle.auth',
   'waffle.nav',
+  'waffle.comment',
   'yaru22.md',
   'ngSanitize'
 ])
@@ -19,7 +20,8 @@ angular.module('waffle', [
   $stateProvider
     .state('post', {
       templateUrl: 'app/post/post.html',
-      controller: 'EditController',
+      // want to switch to Post/Edit Controller below
+      controller: 'PostController',
       url: '/post'
     })
 

@@ -26,6 +26,11 @@ angular.module('waffle.edit', [])
     $location.path('/');
   }
 
+  // $scope.submitComment = function(content, created) {
+  //   console.log(content);
+  //   console.log(this.created);
+  // }
+
   $scope.updatePost = function(title, content) {
     console.log("TRYING")
     console.log($rootScope.displayName)
