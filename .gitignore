@@ -4,5 +4,5 @@ node_modules
 /data/**
 **/.DS_Store
 .DS_Store
-server/photo-upload/archives/*
+server/api/photo/archives/*
 !**/.gitkeep

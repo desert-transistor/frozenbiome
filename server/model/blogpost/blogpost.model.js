@@ -8,6 +8,7 @@ var BlogpostSchema = new Schema({
   url: String,
   updated: { type: Date, default: Date.now },
   // created
+  imageUrl: String,
   isPublished: Boolean
   // comments: [CommentSchema]
 });

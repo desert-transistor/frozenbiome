@@ -31,7 +31,8 @@ function appMiddleware (app) {
     resave: false,
     saveUninitialized: true
   }));
-app.use(express.static(__dirname + './api/photo/archives'));
+  console.log(__dirname);
+  app.use(express.static(__dirname + '/api/photo/archives/'));
   app.use(express.static(__dirname + '/../client'));
 }
 

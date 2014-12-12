@@ -11,7 +11,7 @@ angular.module('waffle.services', [])
     return $http({
       method: 'POST',
       url: '/api/blogposts/?userId=' + userId,
-      data: { title: title, content: content, username: user, imageId: imageId }
+      data: { title: title, content: content, username: user, imageUrl: imageId }
     });
   }
   
