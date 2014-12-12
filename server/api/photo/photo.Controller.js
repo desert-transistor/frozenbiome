@@ -55,5 +55,5 @@ module.exports = {
       
 }
 
-// module.exports = photoRouter;
+// I think the res.send(imageName) is working correctly but not being handled correctly in the return
 // var photoRouter = express.Router();

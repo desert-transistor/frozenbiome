@@ -4,7 +4,7 @@ angular.module('waffle.services', [])
 .factory('Edit', function ($http, $location, $window, $rootScope) {
   //getPost() if post exists, else if new post, don't
 
-  var imageId = ''
+  var imageId = [];
 
   //PASS IN USERID
   var addPost = function (title, content, user, imageId, userId) {
