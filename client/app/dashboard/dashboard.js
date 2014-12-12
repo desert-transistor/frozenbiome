@@ -87,6 +87,7 @@ angular.module('waffle.dashboard', ['ui.directives'])
     Dashboard.getAllPosts($rootScope.userId)
       .then(function(data) {
             console.log(data)
+            console.log(data.blogposts)
         data.blogposts.forEach(function(post) {
           console.log(post)
           if ($scope.post_ids.indexOf(post._id) == -1) {
