@@ -11,7 +11,7 @@ controller.index = function(req, res) {
 };
 
 controller.show = function(req, res) {
-  var UserId = req.params.id;
+  var userId = req.params.id;
 
   User.findById(userId, '-password', function(err, user) {
     if (err) res.send(500);

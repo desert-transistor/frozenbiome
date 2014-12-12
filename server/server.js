@@ -11,7 +11,7 @@ mongoose.connect(config.mongo.url, config.mongo.options);
 // init app
 var app = express();
 
-// mids
+// middlewares
 config.express(app);
 
 // router
