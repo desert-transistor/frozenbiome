@@ -17,5 +17,9 @@ config.express(app);
 // router
 router(app);
 
+var port = 8000;
+app.listen(port);
+console.log("Listening on localhost: " + port)
+
 // expose app
 module.exports = app;
