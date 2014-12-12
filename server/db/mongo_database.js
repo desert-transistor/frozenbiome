@@ -53,6 +53,7 @@ var Post = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
     username: { type: String, required: true },
+    imageId: {type: String, required: false},
     is_published: { type: Boolean, default: false },
     content: { type: String, required: true },
     created: { type: Date, default: Date.now },

@@ -1,11 +1,13 @@
 var express     = require('express');
+var app = express();
 var bodyParser = require('body-parser'); //bodyparser + json + urlencoder
 var morgan  = require('morgan'); // logger
 var mongo_helpers = require('./db/mongo_helpers.js')
 var session = require('express-session');
 var marked = require('marked');
+var path = require('path');
 
-var app = express();
+var photoUploadRouter = express.Router();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -17,9 +19,21 @@ app.use(session({
 }));
 
 app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/photo-upload'));
+
+
+app.use('/api/photo-upload', photoUploadRouter);
 
 //Set up routes
 var routes = {};
+
+var port = process.env.PORT || 8000;
+
+app.listen(port);
+console.log("Listening on localhost: " + port)
+
+require('./photo-upload/photoUploadRoutes')(photoUploadRouter);
+// require('./photo-upload/photoUploadRoutes')(photoRouter);
 
 
 /********** GET REQUESTS ********/
@@ -136,9 +150,10 @@ app.post('/newPost', function(req, res) {
     var username = req.session.user;
     var displayName = req.session.displayName;
     console.log("POSTING FOR", username)
+    var imageId = req.body.imageId;
 		var title = req.body.title;
 		var content = req.body.content;
-		mongo_helpers.saveNewPost(username, displayName, title, content, 
+		mongo_helpers.saveNewPost(username, displayName, title, content, imageId,  
 			function() { res.status(403).send('Post Failed!')}, 
 			function() { res.send('Posted!')})
   } else { 
@@ -172,5 +187,9 @@ app.delete('/deletePost*', function(req,res) {
 })
 
 
+
+
 // export our app for testing and flexibility, required by index.js
 module.exports = app;
+
+
