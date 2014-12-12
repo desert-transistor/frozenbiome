@@ -11,6 +11,7 @@ angular.module('waffle.edit', [])
   $scope.submit = function(title, content, created) {
   	Edit.addPost(this.title, this.content, this.created, $rootScope.user)
   	.success(function(data) {
+      console.log("I done submitted sumthin!");
       console.log("SUCCESS: ", data)
     })
     .error(function(err, data) {
@@ -20,6 +21,11 @@ angular.module('waffle.edit', [])
     
     $location.path('/');
   }
+
+  // $scope.submitComment = function(content, created) {
+  //   console.log(content);
+  //   console.log(this.created);
+  // }
 
   $scope.updatePost = function(title, content) {
     console.log("TRYING")
