@@ -4,20 +4,22 @@ angular.module('waffle.services', [])
 .factory('Edit', function ($http, $location, $window, $rootScope) {
   //getPost() if post exists, else if new post, don't
 
-  var imageId = ''
+  var imageId = [];
 
-  var addPost = function (title, content, user, imageId) {
+  //PASS IN USERID
+  var addPost = function (title, content, user, imageId, userId) {
     return $http({
       method: 'POST',
-      url: '/newPost',
-      data: { title: title, content: content, username: user, imageId: imageId }
+      url: '/api/blogposts/?userId=' + userId,
+      data: { title: title, content: content, username: user, imageUrl: imageId }
     });
   }
   
-  var updatePost = function (title, content, postID) {
+  //PASS IN USERID
+  var updatePost = function (title, content, postID, userId) {
     return $http({
       method: 'POST',
-      url: 'updatePost',
+      url: '/api/blogposts/' + postID + '?userId=' + userId,
       data: { title: title, content: content, username: $rootScope.user, postID: postID }
     });
   }
@@ -31,17 +33,21 @@ angular.module('waffle.services', [])
 })
 
 .factory('Dashboard', function ($http, $location, $window) {
-  var getAllPosts = function () {
+  
+
+  //PASS IN USERID
+  var getAllPosts = function (userId) {
     return $http({
       method: 'GET',
       //TODO: Dynamically update username, and display at top of dashboard page
-      url: '/users',
+      url: 'api/blogposts/?userId=' + userId,
     })
     .then(function(res) {
       return res.data;
     })
   }
 
+  //none yet in the new server
   var deletePost = function (postID) {
     return $http({
       method: 'DELETE',
@@ -49,20 +55,24 @@ angular.module('waffle.services', [])
     })
   }
 
-  var loadUserBlog = function(username) {
+  //PASS IN USERID AND APPEND USERID
+  var loadUserBlog = function(userId) {
+    //needs user id in place of user name.
+
     return $http({
       method: 'GET',
-      url: '/users/' + username,
+      url: 'api/users/' + userId,
     })
     .then(function(res) {
       return res.data;
     })
   }
 
+  //DONE
   var getAllWafflers = function() {
     return $http({
       method: 'GET',
-      url: '/allWafflers'
+      url: '/api/users/'
     })
     .then(function(res) {
       return res.data;
@@ -77,23 +87,26 @@ angular.module('waffle.services', [])
   };
 })
 
+//NOTHING DONE YET
 .factory('Auth', function ($http, $location, $window) {
   var login = function (username, password) {
     return $http({
       method: 'POST',
-      url: '/login',
+      url: '/auth/login',
+      data: {username: username}
+    })
+  }
+  
+  //DONE
+  var signup = function (username, password) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/',
       data: {username: username, password: password}
     })
   }
 
-  var signup = function (username, password, displayName) {
-    return $http({
-      method: 'POST',
-      url: '/signup',
-      data: {username: username, password: password, displayName: displayName}
-    })
-  }
-
+  //NOTHING DONE YET
   var logout = function() {
     return $http({
       method: 'GET',
@@ -101,6 +114,7 @@ angular.module('waffle.services', [])
     })
   }
 
+  //NOTHING DONE YET
   var checkSession = function() {
     return $http({
       method: 'GET',

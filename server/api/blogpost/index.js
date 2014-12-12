@@ -3,10 +3,10 @@ var controller = require('./blogpost.controller');
 
 var router = express.Router();
 
-router.get('/', controller.index);
-router.get('/:id', controller.index);
+router.get('/', controller.index);      //get all for one user
+router.get('/:id', controller.index);   //get post equal to id
 
-router.post('/:id', controller.update);
-router.post('/', controller.create);
+router.post('/:id', controller.update); //edit
+router.post('/', controller.create);    //new post
 
 module.exports = router;
