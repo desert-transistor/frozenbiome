@@ -1,0 +1,56 @@
+<div ng-controller='CommentController' ng-init="commentArray" id="commentcontroller">
+
+ <!-- Comment -->
+      <div class="well">
+        <h4>Leave a Comment:</h4>
+        <form role="form" name="commentForm">
+          <div class="form-group">
+            <textarea ng-model="commentContent" class="form-control commentTextArea" rows="3" placeholder="My respectful and constructive comment"></textarea>
+          </div>
+          <button type="submit" class="btn btn-blue" ng-click="submitComment(commentContent, created);">Submit</button>
+        </form>
+      </div>
+
+      <hr>
+
+
+      <div class="media" ng-repeat="comment in commentArray" >
+        <div class="comment-item" style="list-style-type: none;">
+          <a class="pull-left" href="#">
+            <img class="media-object" src="http://placehold.it/64x64" alt="">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading" ng-init="limit= 200; moreShown = false">{{comment.commenter}}
+              <small>{{comment.date | date: 'medium'}}</small>
+            </h4>{{comment.text | limitTo: limit}}{{comment.text.length > limit ? '...' : ''}} <a ng-show="comment.text.length > limit" href ng-click="limit=comment.text.length; moreShown = true"> More </a>
+            <a ng-show="moreShown" href ng-click="limit=200; moreShown = false"> Less </a>
+          </div>
+          <br>
+        </div>
+      </div>
+
+      <!-- Comment -->
+<!--       <div class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="http://placehold.it/64x64" alt="">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">Grant Wu
+                            <small>August 25, 2014 at 9:30 PM</small>
+                        </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. -->
+          <!-- Nested Comment -->
+      <!--     <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="http://placehold.it/64x64" alt="">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">David K
+                                    <small>August 25, 2014 at 9:30 PM</small>
+                                </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </div>
+          </div> -->
+          <!-- End Nested Comment -->
+<!--         </div>
+      </div>
+    </div> -->
+</div>
