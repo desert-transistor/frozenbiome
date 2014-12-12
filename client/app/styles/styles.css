@@ -13,6 +13,52 @@ h4 {
   font-size: 1.6em;
 }
 
+.add-plus {
+  height: 130px;
+  vertical-align: top;
+  text-align: center;
+  line-height: 111px;
+  font-size: 150px;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: lightgrey;
+}
+
+.thumb-button {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: -8px;
+  border-radius: 11px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+.edit-button {
+  color: rgba(2, 0, 0, 0.47);
+  right: 28px;
+  border: 1px solid lightgrey;
+
+}
+
+.delete-button {
+  color: rgba(211, 81, 81, 0.47);
+  right: 3px;
+}
+
+.plus-symbol {
+  margin-top: -10px;
+  cursor: pointer;
+}
+
+.plus-symbol:hover {
+  color: lightgrey;
+  opacity: 0.5;
+}
+
 .row {
   position: relative;
 }

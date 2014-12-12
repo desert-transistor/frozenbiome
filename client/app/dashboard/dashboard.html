@@ -9,13 +9,15 @@
           <img class="post-image" src="{{image}}"/>
         </div>
         <p class="snippet" ng-bind-html="post.markedContent"></p>
-        <a ng-if="loggedIn" href="#/edit" ng-click="savePostInfo()"><span class="label label-success">Edit</span></a>
-        <a ng-if="loggedIn" href='#/dashboard' ng-click="deletePost()"><span class="label label-danger">Delete</span></a>
+        <span class="thumb-button edit-button glyphicon glyphicon-pencil" ng-if="loggedIn" href="#/edit" ng-click="savePostInfo()"></span>
+        <span ng-if="loggedIn" href='#/dashboard' class="thumb-button delete-button glyphicon glyphicon-trash" ng-click="deletePost()"></span>
       </section>
     </div>
      
+    <div class="col-lg-4 thumb add-plus stamped">
+      <div class="plus-symbol" ng-click="makePost()">+</div> 
+    </div>
   </div>
-    <button class="btn btn-blue btn-lrg btn-expand" ng-click="makePost()">Make New Post</button> 
 </div>
 
 
