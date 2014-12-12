@@ -6,7 +6,7 @@ angular.module('waffle.dashboard', ['ui.directives'])
       restrict: 'A',
       scope: true,
       link: function(scope, element, attrs) {
-        console.log("link called on", element[0]);
+        // console.log("link called on", element[0]);
         scope.element = element;
         if (!$rootScope.packery) {
           $rootScope.packery = new Packery(element[0].parentElement, {
@@ -91,9 +91,14 @@ angular.module('waffle.dashboard', ['ui.directives'])
         data.blogposts.forEach(function(post) {
           console.log(post)
           if ($scope.post_ids.indexOf(post._id) == -1) {
+            if(post.imageUrl){
+              post.imageUrl = post.imageUrl.split(',');
+              // console.log($scope.postImages);
+            }
             $scope.posts.push(post);
             $scope.post_ids.push(post._id);
           }
+            console.log($scope.posts);
         }, function(err) {
           console.log("Couldn't retrieve posts: ", err);
         });

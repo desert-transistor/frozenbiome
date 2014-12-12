@@ -12,7 +12,7 @@ angular.module('waffle.edit', [])
     console.log(Edit.imageId);
     ///here Edit.imageId is an array
     console.log($rootScope.userId);
-  	Edit.addPost(this.title, this.content, $rootScope.user, '['+ Edit.imageId + ']' || null, $rootScope.userId, this.created)
+  	Edit.addPost(this.title, this.content, $rootScope.user, Edit.imageId  || null, $rootScope.userId, this.created)
     ///now here it is not??
 
     .success(function(data) {

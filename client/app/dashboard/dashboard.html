@@ -5,8 +5,8 @@
     <div packery class="col-lg-4 thumb"  ng-repeat="post in posts | orderBy:-'post.position'" >
         <h1><a ng-click="savePostInfo()" href="#/post">{{post.title}}</a></h1>
         
-        <div ng-repeat="image in post.imageUrl">
-        <img class="post-image" src="./{{image}}"/>
+        <div ng-show="post.imageUrl" ng-repeat="image in post.imageUrl">
+          <img class="post-image" src="{{image}}"/>
         </div>
         <!--POST SNIPPET-->
         <p class="snippet" ng-bind-html="post.markedContent"></p>
