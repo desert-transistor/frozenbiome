@@ -17,13 +17,14 @@
 
       <!-- Author -->
       <p class="lead">
-        by <a href="#/users/{{postUsername}}">{{postAuthor}}</a>
+        <!-- by <a href="#/users/{{postUsername}}">{{postAuthor}}</a> -->
+        <h3>by {{user}}</h3> 
       </p>
 
       <hr>
 
       <!-- Date/Time -->
-      <p><span class="glyphicon glyphicon-time"></span> {{created | date: 'medium'}}</p>
+      <p><span class="glyphicon glyphicon-time"></span> {{updated | date: 'medium'}}</p>
 
       <hr>
 
