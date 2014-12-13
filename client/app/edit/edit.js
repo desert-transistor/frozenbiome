@@ -67,7 +67,7 @@ angular.module('waffle.edit', [])
   
   $scope.onFileSelect = function(files){
     
-                            console.log($scope.title + Auth.currentUser);
+    console.log($scope.title + Auth.currentUser);
     for(var i = 0; i < files.length; i++){
       var file = files[i];
                               console.log(file);

@@ -135,8 +135,10 @@ angular.module('waffle.dashboard', ['ui.directives'])
     $rootScope.postID = this.post._id;
     $rootScope.isUpdate = true;
     $rootScope.created = this.post.created;
+    $rootScope.updated = this.post.updated;
     $rootScope.postAuthor = this.post.author;
     $rootScope.postUsername = this.post.username;
+    $rootScope.imageUrl = this.post.imageUrl;
   }
 
   $scope.testFunc = function() {

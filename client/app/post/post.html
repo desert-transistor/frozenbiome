@@ -17,23 +17,27 @@
 
       <!-- Author -->
       <p class="lead">
-        by <a href="#/users/{{postUsername}}">{{postAuthor}}</a>
+        <!-- by <a href="#/users/{{postUsername}}">{{postAuthor}}</a> -->
+        <h3>by {{user}}</h3> 
       </p>
 
       <hr>
 
       <!-- Date/Time -->
-      <p><span class="glyphicon glyphicon-time"></span> {{created | date: 'medium'}}</p>
+      <p><span class="glyphicon glyphicon-time"></span> {{updated | date: 'medium'}}</p>
 
       <hr>
 
       <!-- Preview Image -->
-      <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-
+      <div ng-model="imageUrl" ng-show="imageUrl">
+        <div ng-repeat="image in imageUrl">
+          <img class="img-responsive" src="{{image}}" alt="">
+        </div>
+      </div>
       <hr>
 
       <!-- Post Content -->
-      <p class="lead" ng-bind-html="markedContent"></p>
+      <div class="lead" ng-model="content">{{content}}</div>
 
       <hr>
 
