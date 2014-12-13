@@ -21,7 +21,7 @@ angular.module('waffle', [
     .state('post', {
       templateUrl: 'app/post/post.html',
       // want to switch to Post/Edit Controller below
-      controller: 'PostController',
+      controller: 'DashboardController',
       url: '/post'
     })
 
