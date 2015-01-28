@@ -23,7 +23,7 @@ angular.module('waffle.edit', [])
         console.log("DATA", data);
       });
 
-    $location.path('/');
+    $location.path('/dashboard');
   }
 
   $scope.updatePost = function (title, content) {
