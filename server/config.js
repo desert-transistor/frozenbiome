@@ -1,18 +1,29 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var morgan  = require('morgan');
+var morgan = require('morgan');
 var session = require('express-session');
 var marked = require('marked');
 
+var uriUtil = require('mongodb-uri');
+var mongooseUri = process.env.MONGOLAB_URI;
+
+if (mongooseUri) { //If we have an env variable in prod, use that
+
+  //Format the URI
+  mongooseUri = uriUtil.formatMongoose(mongooseUri);
+} else {
+  mongooseUri = 'mongodb://localhost/waffledb'; //Otherwise, connect to your local instance. Choose name here.
+}
+
 var mongo = {
-  url: "mongodb://localhost/waffledb",
+  url: mongooseUri,
   options: {
     server: {
       socketOptions: {
         keepAlive: 1,
         connectTimeoutMS: 30000
       }
-    }, 
+    },
     replset: {
       socketOptions: {
         keepAlive: 1,
@@ -22,8 +33,10 @@ var mongo = {
   }
 };
 
-function appMiddleware (app) {
-  app.use(bodyParser.urlencoded({extended: true}));
+function appMiddleware(app) {
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
   app.use(bodyParser.json());
   app.use(morgan('dev'));
   app.use(session({
