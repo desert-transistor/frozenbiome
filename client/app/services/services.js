@@ -106,6 +106,9 @@ angular.module('waffle.services', [])
       data: {
         username: username
       }
+    }).then(function (data) {
+      window.localStorage.setItem('userId', data.data);
+      return data;
     })
   }
 

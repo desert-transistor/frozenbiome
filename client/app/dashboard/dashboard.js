@@ -91,9 +91,10 @@ angular.module('waffle.dashboard', ['ui.directives'])
     return arr[pos];
   }
 
-  $scope.getAllPosts = function () {
-    console.log("GETTING POSTS")
-    console.log($rootScope.userId);
+  $scope.getAllPosts = function () {   
+    if (!$rootScope.userId) {
+      $rootScope.userId = window.localStorage.getItem('userId');
+    } 
     Dashboard.getAllPosts($rootScope.userId)
       .then(function (data) {
         console.log(data)
