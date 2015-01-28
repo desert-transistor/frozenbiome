@@ -4,6 +4,7 @@ angular.module('waffle.auth', [])
 	var userId = window.localStorage.getItem('userId')
 	if (userId) {
 		$rootScope.userId = userId;
+		console.log('userId:', userId);
 		$location.path('/dashboard');
 	}
 	$scope.login = function () {

@@ -41,14 +41,13 @@ angular.module('waffle.edit', [])
     $location.path('/');
   }
 
-  $scope.checkSession = function () {
-    Auth.checkSession()
-      .then(function (data) { ///data is UNDEFINED
-        $rootScope.displayName = data.data.displayName;
-        $rootScope.user = data.data.username;
-      })
-  }
-
+  // $scope.checkSession = function () {
+  //   // Auth.checkSession()
+  //     .then(function (data) { ///data is UNDEFINED
+  //       $rootScope.displayName = data.data.displayName;
+  //       $rootScope.user = data.data.username;
+  //     })
+  // }
   console.log("loading photo controller...")
 
   $scope.dataLoaded = false;
