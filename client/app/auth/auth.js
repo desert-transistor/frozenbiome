@@ -1,7 +1,11 @@
 angular.module('waffle.auth', [])
 
 .controller('AuthController', function ($scope, $location, $rootScope, Auth) {
-
+	var userId = window.localStorage.getItem('userId')
+	if (userId) {
+		$rootScope.userId = userId;
+		$location.path('/dashboard');
+	}
 	$scope.login = function () {
 		if (!$scope.username || !$scope.password) {
 			alert('Username and password required!')
