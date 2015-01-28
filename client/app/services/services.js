@@ -11,16 +11,26 @@ angular.module('waffle.services', [])
     return $http({
       method: 'POST',
       url: '/api/blogposts/?userId=' + userId,
-      data: { title: title, content: content, username: user, imageUrl: imageId }
+      data: {
+        title: title,
+        content: content,
+        username: user,
+        imageUrl: imageId
+      }
     });
   }
-  
+
   //PASS IN USERID
   var updatePost = function (title, content, postID, userId) {
     return $http({
       method: 'POST',
       url: '/api/blogposts/' + postID + '?userId=' + userId,
-      data: { title: title, content: content, username: $rootScope.user, postID: postID }
+      data: {
+        title: title,
+        content: content,
+        username: $rootScope.user,
+        postID: postID
+      }
     });
   }
 
@@ -33,50 +43,50 @@ angular.module('waffle.services', [])
 })
 
 .factory('Dashboard', function ($http, $location, $window) {
-  
+
 
   //PASS IN USERID
   var getAllPosts = function (userId) {
     return $http({
-      method: 'GET',
-      //TODO: Dynamically update username, and display at top of dashboard page
-      url: 'api/blogposts/?userId=' + userId,
-    })
-    .then(function(res) {
-      return res.data;
-    })
+        method: 'GET',
+        //TODO: Dynamically update username, and display at top of dashboard page
+        url: 'api/blogposts/?userId=' + userId,
+      })
+      .then(function (res) {
+        return res.data;
+      })
   }
 
   //none yet in the new server
   var deletePost = function (postID) {
     return $http({
       method: 'DELETE',
-      url: '/deletePost/'+ postID
+      url: '/deletePost/' + postID
     })
   }
 
   //PASS IN USERID AND APPEND USERID
-  var loadUserBlog = function(userId) {
+  var loadUserBlog = function (userId) {
     //needs user id in place of user name.
 
     return $http({
-      method: 'GET',
-      url: 'api/users/' + userId,
-    })
-    .then(function(res) {
-      return res.data;
-    })
+        method: 'GET',
+        url: 'api/users/' + userId,
+      })
+      .then(function (res) {
+        return res.data;
+      })
   }
 
   //DONE
-  var getAllWafflers = function() {
+  var getAllWafflers = function () {
     return $http({
-      method: 'GET',
-      url: '/api/users/'
-    })
-    .then(function(res) {
-      return res.data;
-    })
+        method: 'GET',
+        url: '/api/users/'
+      })
+      .then(function (res) {
+        return res.data;
+      })
   }
 
   return {
@@ -93,21 +103,26 @@ angular.module('waffle.services', [])
     return $http({
       method: 'POST',
       url: '/auth/login',
-      data: {username: username}
+      data: {
+        username: username
+      }
     })
   }
-  
+
   //DONE
   var signup = function (username, password) {
     return $http({
       method: 'POST',
       url: '/api/users/',
-      data: {username: username, password: password}
+      data: {
+        username: username,
+        password: password
+      }
     })
   }
 
   //NOTHING DONE YET
-  var logout = function() {
+  var logout = function () {
     return $http({
       method: 'GET',
       url: '/logout'
@@ -115,31 +130,31 @@ angular.module('waffle.services', [])
   }
 
   //NOTHING DONE YET
-  var checkSession = function() {
-    return $http({
-      method: 'GET',
-      url: '/checkSession'
-    })
-  }
+  // var checkSession = function() {
+  //   return $http({
+  //     method: 'GET',
+  //     url: '/checkSession'
+  //   })
+  // }
 
-  var loggedIn = false;
+  // var loggedIn = false;
 
-  var user = '';
+  // var user = '';
 
-  var currentUser = '';
+  // var currentUser = '';
 
-  var saveUser = function(name){
-    this.currentUser = name;
-  }
+  // var saveUser = function(name){
+  //   this.currentUser = name;
+  // }
 
   return {
-  	login: login,
+    login: login,
     signup: signup,
-    logout: logout,
-    loggedIn: loggedIn,
-    user: user,
-    currentUser: currentUser,
-    saveUser: saveUser,
-    checkSession: checkSession
+    logout: logout
+      // loggedIn: loggedIn,
+      // user: user,
+      // currentUser: currentUser,
+      // saveUser: saveUser,
+      // checkSession: checkSession
   };
 })

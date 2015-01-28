@@ -1,97 +1,96 @@
 angular.module('waffle.edit', [])
 
-.controller('EditController', ['$scope', '$rootScope', 'Edit', 'Dashboard', '$location', 'Auth', '$http', '$upload', '$state', function($scope, $rootScope, Edit, Dashboard, $location, Auth, $http, $upload, $state) {
+.controller('EditController', ['$scope', '$rootScope', 'Edit', 'Dashboard', '$location', 'Auth', '$http', '$upload', '$state', function ($scope, $rootScope, Edit, Dashboard, $location, Auth, $http, $upload, $state) {
 
-  $scope.getRandomName = function() {
+  $scope.getRandomName = function () {
     arr = ['Alex Hawkins', 'Evan Spiler', 'David Kae', 'Grant Wu'];
     var pos = Math.floor((Math.random() * 4));
     return arr[pos];
   }
 
-  $scope.submit = function(title, content, created) {
+  $scope.submit = function (title, content, created) {
     console.log(Edit.imageId);
     ///here Edit.imageId is an array
     console.log($rootScope.userId);
-  	Edit.addPost(this.title, this.content, $rootScope.user, Edit.imageId  || null, $rootScope.userId, this.created)
-    ///now here it is not??
+    Edit.addPost(this.title, this.content, $rootScope.user, Edit.imageId || null, $rootScope.userId, this.created)
+      ///now here it is not??
 
-    .success(function(data) {
-      console.log("SUCCESS: ", data)
-    })
-    .error(function(err, data) {
-      console.log("ERROR", err);
-      console.log("DATA", data);
-    });
-    
+    .success(function (data) {
+        console.log("SUCCESS: ", data)
+      })
+      .error(function (err, data) {
+        console.log("ERROR", err);
+        console.log("DATA", data);
+      });
+
     $location.path('/');
   }
 
-  $scope.updatePost = function(title, content) {
+  $scope.updatePost = function (title, content) {
     console.log("TRYING")
     console.log($rootScope.displayName)
     Edit.updatePost(title, content, $rootScope.postID)
-    .success(function(data) {
-  	  console.log("SUCCESS: ", data)
-  	})
-    .error(function(err, data) {
-      console.log("ERROR", err);
-      console.log("DATA", data);
-    });
+      .success(function (data) {
+        console.log("SUCCESS: ", data)
+      })
+      .error(function (err, data) {
+        console.log("ERROR", err);
+        console.log("DATA", data);
+      });
 
     $location.path('/');
   }
 
-  $scope.checkSession = function() {
+  $scope.checkSession = function () {
     Auth.checkSession()
-    .then(function(data) {   ///data is UNDEFINED
-      $rootScope.displayName = data.data.displayName;
-      $rootScope.user = data.data.username;
-      $rootScope.loggedIn = true;
-    })
+      .then(function (data) { ///data is UNDEFINED
+        $rootScope.displayName = data.data.displayName;
+        $rootScope.user = data.data.username;
+      })
   }
 
   console.log("loading photo controller...")
-  
+
   $scope.dataLoaded = false;
   $scope.prompt = {};
-  $scope.userId =  null;    //Auth.getUserId();
+  $scope.userId = null; //Auth.getUserId();
   $scope.userPhotoSubmission = undefined;
   $scope.submissionPeriodIsOpen = false;
   $scope.photoTaken = false;
 
-  
-  $scope.onFileSelect = function(files){
-    
-                            console.log($scope.title + Auth.currentUser);
-    for(var i = 0; i < files.length; i++){
+
+  $scope.onFileSelect = function (files) {
+
+    console.log($scope.title + Auth.currentUser);
+    for (var i = 0; i < files.length; i++) {
       var file = files[i];
-                              console.log(file);
+      console.log(file);
       $scope.upload = $upload.upload({
-        method: 'POST',
-        url:  'api/photos/',
-        data: {
-          prompt_id: $scope.imageId,
-          user_id:   Auth.currentUser      
-        },
-        file: file
-      })
-      .progress(function(evt){
-        // console.log(evt);
-        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total))
-      })
-      .success(function(data, status, headers, config){
-        Edit.imageId.push(data);
-        $scope.imageNamesToDisplay = Edit.imageId;
-        console.log($scope.imageNamesToDisplay);
-        console.log("Edit.imageId is: ", Edit.imageId);
-                              console.log(status);
-                              console.log(headers);
-                              console.log(config);
-        // $state.reload();                             ///fixes the issue of the content disappearing. What is the side affect of removing it??
-      })
-      .error(function(error){
-        console.log('ERROR: '. error);
-      })
+          method: 'POST',
+          url: 'api/photos/',
+          data: {
+            prompt_id: $scope.imageId,
+            user_id: Auth.currentUser
+          },
+          file: file
+        })
+        .progress(function (evt) {
+          // console.log(evt);
+          console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total))
+        })
+        .success(function (data, status, headers, config) {
+          Edit.imageId.push(data);
+          $scope.imageNamesToDisplay = Edit.imageId;
+          console.log($scope.imageNamesToDisplay);
+          console.log("Edit.imageId is: ", Edit.imageId);
+          console.log(status);
+          console.log(headers);
+          console.log(config);
+          // $state.reload();                             ///fixes the issue of the content disappearing. What is the side affect of removing it??
+        })
+        .error(function (error) {
+          console.log('ERROR: '.error);
+        })
     }
   }
 
@@ -102,7 +101,7 @@ angular.module('waffle.edit', [])
 
 
 // myApp.controller('MyCtrl') = [ '$scope', '$upload', function($scope, $upload) {
-  
+
 //   $scope.$watch('files', function() {
 //     for (var i = 0; i < $scope.files.length; i++) {
 //       var file = $scope.files[i];

@@ -5,21 +5,18 @@
     wafflepress
   </div>
 
-
-
-<!--     <form class="navbar-form navbar-left" ng-if="loggedIn">
-    </form> -->
+    </form> 
     <ul class="nav navbar-nav navbar-right">
-      <div ng-if="loggedIn"><a href="#/users/{{ user.profile.uid }}">{{displayName}}</a></div>
-      <li ng-if="loggedIn">
+      <div><a href="#/users/{{ user.profile.uid }}">{{displayName}}</a></div>
+      <!-- <li>
         <a href="#/login" ng-click="logout()">Logout</a>
-      </li>
-      <li ng-if="!loggedIn">
+       --></li>
+      <!-- <li ng-if="!loggedIn">
         <a href="#/login">Login</a>
       </li>
       <li ng-if="!loggedIn">
         <a href="#/signup">Register</a>
-      </li>
+      </li> -->
     </ul>
   </div>
   <!-- /.navbar-collapse -->
