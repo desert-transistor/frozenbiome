@@ -1,6 +1,8 @@
+
 body {
   background-color: white;
   height: 100%;
+  padding-top: 70px; 
 }
 
 h1,h2,h3{
@@ -90,6 +92,7 @@ h4 {
   border-bottom: 1px solid lightgrey;
   padding: 0 10px;
   border-radius: 0;
+  position: fixed;
 }
 
 .navbar-header {
