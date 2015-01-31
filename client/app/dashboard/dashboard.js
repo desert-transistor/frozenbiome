@@ -32,6 +32,7 @@ angular.module('waffle.dashboard', ['ui.directives'])
           };
 
           $rootScope.packery.on('layoutComplete', orderItems);
+          $rootScope.packery.on('imagesLoaded', orderItems);
           $rootScope.packery.on('dragItemPositioned', done);
 
 
