@@ -54,6 +54,7 @@ angular.module('waffle.dashboard', ['ui.directives'])
         scope.$on('$destroy', function () {
           $rootScope.packery.remove(scope.element[0]);
           scope.packery.layout();
+          $rootScope.packery = null;
         });
 
 
@@ -91,10 +92,10 @@ angular.module('waffle.dashboard', ['ui.directives'])
     return arr[pos];
   }
 
-  $scope.getAllPosts = function () {   
+  $scope.getAllPosts = function () {
     if (!$rootScope.userId) {
       $rootScope.userId = window.localStorage.getItem('userId');
-    } 
+    }
     Dashboard.getAllPosts($rootScope.userId)
       .then(function (data) {
         console.log(data)
