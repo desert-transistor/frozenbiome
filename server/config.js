@@ -34,11 +34,12 @@ var mongo = {
 };
 
 function appMiddleware(app) {
+  app.use(bodyParser.json({limit: '5mb'}));
   app.use(bodyParser.urlencoded({
-    extended: true
+    extended: true,
+    limit: '5mb'
   }));
-  app.use(bodyParser.json());
-  app.use(morgan('dev'));
+ app.use(morgan('dev'));
   app.use(session({
     secret: 'zfnzkwjehgweghw',
     resave: false,
