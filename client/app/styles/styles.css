@@ -16,11 +16,12 @@ h4 {
 }
 
 .add-plus {
-  height: 130px;
+  height: auto;
+  width: 100%;
   vertical-align: top;
   text-align: center;
-  line-height: 111px;
-  font-size: 150px;
+  line-height: 50px;
+  font-size: 80px;
   color: white;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: lightgrey;
