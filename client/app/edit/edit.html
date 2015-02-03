@@ -25,6 +25,8 @@ textarea:focus {
         </form>
       </div>
 
+      <input ng-if="!isUpdate" class="btn pressBtn" ng-click="submit(title, content, created)" value="Press New" type="submit" />
+
       <div class="form-group">
         <textarea ng-model="title" class="title" placeholder='"My Waffle Post"'></textarea>
       </div>
@@ -33,7 +35,7 @@ textarea:focus {
         <textarea ng-model="content" class="content" placeholder='Write tasty thoughts here..'></textarea>
       </div>
       
-      <input ng-if="!isUpdate" class="btn btn-blue pressBtn" ng-click="submit(title, content, created)" value="Press New" type="submit" />
+      <!-- <input ng-if="!isUpdate" class="btn btn-blue pressBtn" ng-click="submit(title, content, created)" value="Press New" type="submit" /> -->
       <input ng-if="isUpdate" class="btn btnn-green pressBtn" ng-click="updatePost(title, content)" value="Update" type="submit" />
     </form>
   </div>
