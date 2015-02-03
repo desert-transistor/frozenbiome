@@ -12,4 +12,12 @@ angular.module('waffle.nav', [])
 		Auth.checkSession();
 	}
 
+	$scope.makePost = function () {
+		$rootScope.title = '';
+		$rootScope.content = '';
+		$rootScope.postID = '';
+		$rootScope.isUpdate = false;
+		$location.path('/edit');
+	}
+
 })
