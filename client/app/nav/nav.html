@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavController">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header container">
     <img class="navbar-image" src='http://wisebytes.net/illusions/hermanswhite.gif'>
@@ -17,7 +17,11 @@
       <li ng-if="!loggedIn">
         <a href="#/signup">Register</a>
       </li> -->
+      <div class="col-lg-4 add-plus stamped">
+        <div class="plus-symbol" ng-click="makePost()">+</div> 
+      </div>
     </ul>
+
   </div>
   <!-- /.navbar-collapse -->
 </nav>
