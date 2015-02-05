@@ -102,7 +102,7 @@ angular.module('waffle.dashboard', ['ui.directives'])
         console.log(data)
         console.log(data.blogposts)
         data.blogposts.forEach(function (post) {
-          console.log(post)
+          console.log('post in getAllPosts: ', post)
           if ($scope.post_ids.indexOf(post._id) == -1) {
             if (post.imageUrl) {
               post.imageUrl = post.imageUrl.split(',');
@@ -177,6 +177,7 @@ angular.module('waffle.dashboard', ['ui.directives'])
           if ($rootScope.waffler_ids.indexOf(waffler.id) === -1) {
             $rootScope.wafflers.push(waffler);
             $rootScope.waffler_ids.push(waffler._id);
+            console.log('$rootScope.markedContent: ', $rootScope.markedContent);
           }
         }, function (err) {
           console.log("Couldn't retrieve Wafflers: ", err)

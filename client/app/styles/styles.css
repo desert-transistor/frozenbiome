@@ -83,7 +83,9 @@ h4 {
 }
 
 .editing-tools {
-  margin: 20px 0;
+  /*margin: 20px 0;*/
+  text-align: left;
+  padding-bottom: 5px;
 }
 
 .date {
@@ -91,17 +93,25 @@ h4 {
 }
 
 .navbar {
+  font-size: 150%;
   border-bottom: 1px solid lightgrey;
   padding: 0 10px;
   border-radius: 0;
   position: fixed;
 }
 
+.navbar-header a {
+  color: rgb(115, 106, 106);
+}
+
+.navbar-header a:hover {
+  text-decoration: none;
+}
 .navbar-header {
   line-height: 50px;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
-  font-size: 20px;
+  font-size: 120%;
 }
 
 .navbar-image {
@@ -166,7 +176,13 @@ h4 {
 }
 
 .pressBtn {
-  margin-bottom: 80px;
+  /*margin-bottom: 80px;*/
+  /* margin-bottom: 80px; */
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 20px;
+  color: gray;
+  margin: 0 10px;
 }
 
 .postRow {
@@ -313,7 +329,7 @@ h4 {
 .post-image{
   height: 100%;
   width: 100%;
-  padding: 2px;
+  padding-bottom: 2.5rem;
   display: inline-block;
   float: left;
 }
@@ -333,4 +349,11 @@ h4 {
 .do-something-to-post {
   padding-bottom: 5px; 
   box-shadow: 1px 0px 16px 1px rgba(211,211,211,1);*/
+}
+
+.post-content {
+  font-size: 110%;
+  padding: 1rem;
+  line-height: 2.1rem;
+  font-family: arial;
 }
