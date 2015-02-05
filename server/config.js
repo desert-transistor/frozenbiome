@@ -9,8 +9,8 @@ var mongooseUri = process.env.MONGOLAB_URI;
 
 if (mongooseUri) { //If we have an env variable in prod, use that
 
-  //Format the URI
-  mongooseUri = uriUtil.formatMongoose(mongooseUri);
+  // Format the URI
+  // mongooseUri = uriUtil.formatMongoose(mongooseUri);
 } else {
   mongooseUri = 'mongodb://localhost/waffledb'; //Otherwise, connect to your local instance. Choose name here.
 }

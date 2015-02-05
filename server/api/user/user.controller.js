@@ -14,17 +14,20 @@ controller.show = function(req, res) {
   var userId = req.params.id;
 
   User.findById(userId, '-password', function(err, user) {
-    if (err) res.send(500);
-    if (!user) res.send(404);
+    if (err) {return res.send(500);}
+    if (!user) {return res.send(404);}
     res.json(user);
   });
 }
 
 controller.create = function(req, res) {
   var newUser = new User(req.body);
-
+  console.log(req.body);
   newUser.save(function(err, user) {
-    if (err) res.send(500);
+    if (err) {
+      console.log(err);
+      return res.send(500)
+    };
     res.send(200);
   });
 }

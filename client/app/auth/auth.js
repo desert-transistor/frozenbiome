@@ -9,8 +9,6 @@ angular.module('waffle.auth', [])
 		$rootScope.userId = userId;
 		console.log('userId:', userId);
 		$location.path('/dashboard');
-	} else {
-		$location.path('/login');
 	}
 
 	$scope.login = function () {

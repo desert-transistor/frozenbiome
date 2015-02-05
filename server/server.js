@@ -6,6 +6,7 @@ var config = require('./config');
 var router = require('./router');
 
 // connect to db
+console.log('mongo', config.mongo.url);
 mongoose.connect(config.mongo.url, config.mongo.options);
 
 // init app

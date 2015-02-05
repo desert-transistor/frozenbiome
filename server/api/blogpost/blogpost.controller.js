@@ -10,7 +10,7 @@ controller.index = function(req, res) {
   User.findById(userId, function(err, user) {
     if (err) return res.send(500, 'error in finding userId: ' + userId);
     return res.json({
-      blogpostCount: user.blogposts.length,
+      // blogpostCount: user.blogposts.length,
       blogposts: user.blogposts
     })
   })
