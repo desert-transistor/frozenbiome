@@ -16,16 +16,19 @@ textarea:focus {
 
     <form role="form" align="center" ng-controller="EditController">
       <div class="editing-tools">
+
+      <input ng-if="!isUpdate" class="btn pressBtn" ng-click="submit(title, content, created)" value="Add Post" type="submit" />
         
         <form class='half-form'>
-          <input type="submit" ng-model="files" ng-file-select="onFileSelect(files)" ng-multiple="true" class="app-prompt-upload" value="Upload Photo"/>
-          <div ng-show="imageNamesToDisplay" ng-repeat="imageNameToDisplay in imageNamesToDisplay">
-            <img class="post-thumbnail" src="{{imageNameToDisplay}}"/>
-          </div>
+          <input type="submit" ng-model="files" ng-file-select="onFileSelect(files)" ng-multiple="true" class="btn pressBtn" value="Upload Photo"/>
+          
         </form>
       </div>
 
-      <input ng-if="!isUpdate" class="btn pressBtn" ng-click="submit(title, content, created)" value="Add Post" type="submit" />
+          <div ng-show="imageNamesToDisplay" ng-repeat="imageNameToDisplay in imageNamesToDisplay">
+            <img class="post-thumbnail" src="{{imageNameToDisplay}}"/>
+          </div>
+
 
       <div class="form-group">
         <textarea ng-model="title" class="title" placeholder='"My Waffle Post"'></textarea>
