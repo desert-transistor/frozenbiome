@@ -8,7 +8,7 @@
         <div ng-show="post.imageUrl" ng-repeat="image in post.imageUrl">
           <img class="post-image" src="{{image}}"/>
         </div>
-        <div class="post-content">{{post.markedContent}}</div>
+        <div class="post-content">{{post.content}}</div>
         <p class="snippet" ng-bind-html="post.markedContent"></p>
         <span class="thumb-button edit-button glyphicon glyphicon-pencil"  href="#/edit" ng-click="savePostInfo()"></span>
         <span href='#/dashboard' class="thumb-button delete-button glyphicon glyphicon-trash" ng-click="deletePost()"></span>
