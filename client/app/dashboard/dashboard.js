@@ -99,10 +99,8 @@ angular.module('waffle.dashboard', ['ui.directives'])
     }
     Dashboard.getAllPosts($rootScope.userId)
       .then(function (data) {
-        console.log(data)
         console.log(data.blogposts)
         data.blogposts.forEach(function (post) {
-          console.log('post in getAllPosts: ', post)
           if ($scope.post_ids.indexOf(post._id) == -1) {
             if (post.imageUrl) {
               post.imageUrl = post.imageUrl.split(',');
@@ -130,12 +128,12 @@ angular.module('waffle.dashboard', ['ui.directives'])
   $scope.deletePost = function () {
     if (confirm('Are sure you want to delete this post?')) {
       console.log("**************  DELETE POST: ", this.post._id)
-      Dashboard.deletePost(this.post._id)
+      Dashboard.deletePost(this.post._id, this.post.imageUrl)
         .then(function (data) {
           location.reload();
         })
-    } else {
-      // Do nothing!
+        // } else {
+        // Do nothing!
     }
   }
 

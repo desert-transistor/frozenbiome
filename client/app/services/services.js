@@ -42,7 +42,7 @@ angular.module('waffle.services', [])
 
 })
 
-.factory('Dashboard', function ($http, $location, $window) {
+.factory('Dashboard', function ($http, $location, $window, $rootScope) {
 
 
   //PASS IN USERID
@@ -58,11 +58,27 @@ angular.module('waffle.services', [])
   }
 
   //none yet in the new server
-  var deletePost = function (postID) {
+  var deletePost = function (postID, imageUrlArray) {
+    var userID = window.localStorage.getItem('userId');
+    var username = window.localStorage.getItem('username');
+    console.log('username: ', username);
+    console.log('userID: ', userID);
+    console.log('postID in services.js: ', postID);
+    console.log('imageUrlArray in services.js: ', imageUrlArray);
+    // console.log('$rootScope: ', $rootScope);
     return $http({
-      method: 'DELETE',
-      url: '/deletePost/' + postID
-    })
+        method: 'PUT',
+        url: 'api/blogposts/',
+        data: {
+          username: username,
+          userID: userID,
+          postID: postID,
+          imageUrl: imageUrlArray
+        }
+      })
+      .then(function (res) {
+        return res.data;
+      })
   }
 
   //PASS IN USERID AND APPEND USERID
@@ -98,7 +114,7 @@ angular.module('waffle.services', [])
 })
 
 //NOTHING DONE YET
-.factory('Auth', function ($http, $location, $window) {
+.factory('Auth', function ($http, $location, $window, $rootScope) {
   var login = function (username, password) {
     return $http({
       method: 'POST',
@@ -107,6 +123,7 @@ angular.module('waffle.services', [])
         username: username
       }
     }).then(function (data) {
+      console.log('data in services.js: ', data);
       window.localStorage.setItem('userId', data.data);
       return data;
     })
