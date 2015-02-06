@@ -1,6 +1,6 @@
 angular.module('waffle.auth', [])
 
-.controller('AuthController', function ($scope, $location, $rootScope, Auth) {
+.controller('AuthController', function ($scope, $location, $rootScope, Auth, $window) {
 	var userId;
 	if (window.localStorage.getItem('userId')) {
 		userId = window.localStorage.getItem('userId');
@@ -18,10 +18,11 @@ angular.module('waffle.auth', [])
 		}
 		Auth.login($scope.username, $scope.password)
 			.then(function (data) {
-				console.log('data: ', data);
 				$rootScope.user = $scope.username;
-				console.log('$rootScope.user: ', $rootScope.user);
 				$rootScope.userId = data.data;
+				window.localStorage.setItem('username', $scope.user);
+				console.log('data: ', data);
+				console.log('$rootScope.user: ', $rootScope.user);
 				console.log('$rootScope.userId: ', $rootScope.userId);
 				// Auth.saveUser($scope.username);
 				$location.path('/dashboard');
