@@ -82,6 +82,12 @@ controller.delete = function (req, res) {
         }
       };
       removeSingleFile(imageUrlArray, 0);
+    })
+    .then(function () {
+      res.status(200).end();
+    })
+    .catch(function (err) {
+      console.log('Error deleting a blogpost: ', err);
     });
 
 };
