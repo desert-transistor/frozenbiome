@@ -7,6 +7,7 @@ angular.module('waffle', [
   'waffle.post',
   'waffle.auth',
   'waffle.nav',
+  'waffle.comment',
   'yaru22.md',
   'ngSanitize'
 ])
